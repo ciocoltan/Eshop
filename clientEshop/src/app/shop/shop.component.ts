@@ -31,7 +31,7 @@ export class ShopComponent implements OnInit {
     this.getTypes();
   }
 
-  getProducts() {
+  getProducts(): void {
     this.shopService.getProducts(this.shopParams).subscribe(
       (response) => {
         this.products = response.data;
@@ -44,7 +44,7 @@ export class ShopComponent implements OnInit {
       }
     );
   }
-  getBrands() {
+  getBrands(): void {
     this.shopService.getBrands().subscribe(
       (response) => {
         this.brands = [{ id: 0, name: 'All' }, ...response];
@@ -54,7 +54,7 @@ export class ShopComponent implements OnInit {
       }
     );
   }
-  getTypes() {
+  getTypes(): void {
     this.shopService.getTypes().subscribe(
       (response) => {
         this.types = [{ id: 0, name: 'All' }, ...response];
@@ -64,32 +64,32 @@ export class ShopComponent implements OnInit {
       }
     );
   }
-  onBrandsSelected(brandId: number) {
+  onBrandsSelected(brandId: number): void {
     this.shopParams.brandId = brandId;
     this.shopParams.pageNumber = 1;
     this.getProducts();
   }
-  onTypesSelected(typeId: number) {
+  onTypesSelected(typeId: number): void {
     this.shopParams.typeId = typeId;
     this.shopParams.pageNumber = 1;
     this.getProducts();
   }
-  onSortSelected(sort: string) {
+  onSortSelected(sort: string): void {
     this.shopParams.sort = sort;
     this.getProducts();
   }
-  onPageChange(event: number) {
+  onPageChange(event: number): void {
     if (this.shopParams.pageNumber !== event) {
       this.shopParams.pageNumber = event;
       this.getProducts();
     }
   }
-  onSearch() {
+  onSearch(): void {
     this.shopParams.search = this.searchTerm.nativeElement.value;
     this.shopParams.pageNumber = 1;
     this.getProducts();
   }
-  onReset() {
+  onReset(): void {
     this.searchTerm.nativeElement.value = '';
     this.shopParams = new ShopParams();
     this.getProducts();
