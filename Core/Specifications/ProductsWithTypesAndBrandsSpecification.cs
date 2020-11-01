@@ -1,5 +1,3 @@
-using System;
-using System.Linq.Expressions;
 using Core.Entities;
 
 namespace Core.Specifications
@@ -16,6 +14,7 @@ namespace Core.Specifications
             AddInclude(x => x.ProductType);
             AddInclude(x => x.ProductBrand);
             AddOrderBy(x => x.Name);
+            AddInclude(x => x.Photos);
             ApplyPaging(productParams.PageSize * (productParams.PageIndex - 1), productParams.PageSize);
 
             if (!string.IsNullOrEmpty(productParams.Sort))
@@ -40,6 +39,7 @@ namespace Core.Specifications
         {
             AddInclude(x => x.ProductType);
             AddInclude(x => x.ProductBrand);
+            AddInclude(x => x.Photos);
         }
     }
 }
